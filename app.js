@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-const sequelize = require("./database"); // Update this line
+const sequelize = require("./database");
 const bodyParser = require("body-parser");
 
 const app = express();
@@ -27,6 +27,11 @@ assertDatabaseConnectionOk();
 
 // Define additional models and routes here
 app.use("/", taskRoutes);
+
+// Handle root URL 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Todo App API"); // Send a welcome message
+});
 
 // Synchronize models with the database
 sequelize
